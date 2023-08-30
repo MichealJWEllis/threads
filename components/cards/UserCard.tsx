@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
 import { Button } from "../ui/button";
 
 interface Props {
@@ -15,7 +14,6 @@ interface Props {
 
 function UserCard({ id, name, username, imgUrl, personType }: Props) {
   const router = useRouter();
-
   const isCommunity = personType === "Community";
 
   return (
