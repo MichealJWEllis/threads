@@ -65,28 +65,28 @@ export const POST = async (request: Request) => {
   if (eventType === "organization.created") {
     // Resource: https://clerk.com/docs/reference/backend-api/tag/Organizations#operation/CreateOrganization
     // Show what evnt?.data sends from above resource
-    const { id, name, slug, logo_url, image_url, created_by } =
-      evnt?.data ?? {};
+    const { id, name, slug, logo_url, image_url, bio, created_by } =
+        evnt?.data ?? {};
 
     try {
-      // @ts-ignore
-      await createCommunity(
         // @ts-ignore
-        id,
-        name,
-        slug,
-        logo_url || image_url,
-        "org bio",
-        created_by
-      );
+        await createCommunity(
+            // @ts-ignore
+            id,
+            name,
+            slug,
+            logo_url || image_url,
+            bio,
+            created_by
+        );
 
-      return NextResponse.json({ message: "User created" }, { status: 201 });
+        return NextResponse.json({ message: "User created" }, { status: 201 });
     } catch (err) {
-      console.log(err);
-      return NextResponse.json(
-        { message: "Internal Server Error" },
-        { status: 500 }
-      );
+        console.log(err);
+        return NextResponse.json(
+            { message: "Internal Server Error" },
+            { status: 500 }
+        );
     }
   }
 
